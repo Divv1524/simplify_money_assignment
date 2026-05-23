@@ -31,9 +31,7 @@ It contains three HTTP services:
 - Spring Web MVC
 - WebClient for service-to-service calls
 - MongoDB
-- Spring Validation
-- Spring Boot Actuator
-- Springdoc OpenAPI / Swagger
+- Swagger
 - Docker Compose
 - JUnit/Mockito-ready test setup
 
