@@ -1,0 +1,43 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: sm-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  partner-gold-api:
+    build:
+      context: .
+      dockerfile: partner-gold-api/Dockerfile
+    container_name: partner-gold-api
+    ports:
+      - "8081:8081"
+
+  payment-gateway-api:
+    build:
+      context: .
+      dockerfile: payment-gateway-api/Dockerfile
+    container_name: payment-gateway-api
+    ports:
+      - "8082:8082"
+
+  simplify-money-api:
+    build:
+      context: .
+      dockerfile: simplify-money-api/Dockerfile
+    container_name: simplify-money-api
+    depends_on:
+      - mongo
+      - partner-gold-api
+      - payment-gateway-api
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/simplify_money
+      PARTNER_GOLD_BASE_URL: http://partner-gold-api:8081
+      PAYMENT_GATEWAY_BASE_URL: http://payment-gateway-api:8082
+    ports:
+      - "8090:8080"
+
+volumes:
+  mongo-data:

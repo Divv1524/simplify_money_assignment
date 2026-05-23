@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: simplify-money-api
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/simplify_money}
+
+external:
+  partner-gold-base-url: ${PARTNER_GOLD_BASE_URL:http://localhost:8081}
+  payment-gateway-base-url: ${PAYMENT_GATEWAY_BASE_URL:http://localhost:8082}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
