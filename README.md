@@ -31,7 +31,6 @@ It contains three HTTP services:
 - Spring Web MVC
 - WebClient for service-to-service calls
 - MongoDB
-- Swagger
 - Docker Compose
 - JUnit/Mockito-ready test setup
 
